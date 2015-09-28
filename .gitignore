@@ -24,3 +24,14 @@ proguard/
 
 # Log Files
 *.log
+.gradle/
+.idea/
+*.iml
+local.properties
+build/
+
+/.gradle/
+.settings/
+bin/
+build/
+.project
