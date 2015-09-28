@@ -1,38 +1,45 @@
+####This is an Android Studio Version and English translation tentative.
+
+
+I'm exploring alternative ways to lock the Android phone via code for an ongoing project
+
+===
+English translated by Google
 ScreenLock-Android
 ==================
 
-另外一种奇特的解锁方式的锁屏软件
+Another unique way to unlock the lock screen software
 
 #Alpha 4.0.1
-    主要是为什么写这个log呢？是因为对于不同版本的锁屏来说有不同的效果，主要是我的代码其实是没有问题的
-    解除系统锁屏的方法就是keyguard manager，不论版本，不论是小米还是android2.X 4.0 4.1 4.2以上，目前是
-    没有问题的，当然由于是despatched，所以未来的某个版本可能就没用了，那么还有一种方法就是现在好几种市
-    场上的锁屏软件用的那样，先让用户自己把自己的锁屏取消掉，就行了。
-    当然另外一个很重要的问题就是home按键的屏蔽问题，当然这个是解决了，主要是用的的那个locklayer的东西，
-    这个问题当然是有限制的，首先你要申请权限，4.0 & 4.1 中你申请了权限就可以直接用了，但是4.2以上就有
-    了问题，主要是用户必须手动赋予它权限，下一个权限管理的软件并把那项权限添加信任，就可以了，小米上
-    的权限名字叫 允许打开悬浮窗 ，android也差不多，只要把那项权限允许了就行了，可以完美的屏蔽掉home按
-    键，我看市面上的锁屏都是这个样子的。
+    Why write this log mainly do? Because there are different effects for different versions of the lock screen, the main is my code actually is not a problem
+    The method is to lift the system lock screen keyguard manager, regardless of version, either millet or android2.X 4.0 4.1 4.2 or more, is now
+    No problem, of course, because it is despatched, so some future version may useless, then there is a method which is now several city
+    Pitch lock screen software with it, let the user to cancel their lock screen, on the line.
+    Of course, another very important issue is the shielding home key, of course, this is resolved, the main thing is that locklayer use of,
+    The problem of course is limited, first you have to apply for permission, 4.0 & 4.1 you can directly apply for permission to use, but there are more than 4.2
+    The main problem is that users must manually give it permission, the next rights management software and the permission to add items that trust, you can, on millet
+    The permission name is allowed to open the floating window, android is similar, as long as the key permissions that allow on the line, can be the perfect home by masked
+    Key, I think the market is like this lock screen.
 
 #Alpha 4.0.0
-    增加了锁屏界面启动的优化，启动速度更快
-    增加了按键监听，禁止掉了其他不好的按键，比如home键
-    任然存在问题，就是有时候可能会出现toast显示时机不对，貌似是因为lock掉了
-    home按键屏蔽问题，解决方法，仿照LockLayer类的写法，添加了一个权限
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    同时添加类LockLayer，最后添加lockLayer的逻辑代码lock() unlock()
+    Increase the optimization start lock screen, start faster
+    Increase the key listener, prohibit off other bad keys, such as home button
+    However, the existence of any problem that might occur toast sometimes show the wrong time, seemingly due to lock out
+    home button shield problems, solutions, modeled on the wording LockLayer class, add a privilege
+    <Uses-permission android: name = "android.permission.SYSTEM_ALERT_WINDOW" />
+    While adding class LockLayer, last added lockLayer the logic code lock () unlock ()
 
 #Alpha 3.0.0
-    实现了几乎所有的功能，更改了UI和一些逻辑，增加了交互效果
+    Implements almost all functions, change the UI and some logic, increased interactivity
 
 #Alpha 2.0.1
-    ----
+    ----
 
 #Alpha 2.0.0
-    实现了最简单的框架，搭建了一个可以实现手势监听以及最后两个文件之间通过handler进行通信的
-    一个过程，所以现在实现的功能是：
-    1.gestureListener 实现手势监听并且通过handler将数据传递给Screen RelativeLayout里面进行处理
-    2.RelativeLayout实现了根据获得的方向进行相关监听，下个版本要做的事情就是对于这种事件进行监听
+    To achieve the most simple framework, built a gesture can monitor and communicate between the last two documents by the handler
+    A process, so now the functions are:
+    1.gestureListener achieve gesture listener and by handler passes the data to be processed inside Screen RelativeLayout
+    2.RelativeLayout realized related listens obtained depending on the direction, the next version to do is to listen for this event
 
 # Beta 1.0
-    实现了简单的锁屏界面，但是没有实现解锁逻辑
+    It implements a simple lock screen, but there is no logic to achieve unlocking
