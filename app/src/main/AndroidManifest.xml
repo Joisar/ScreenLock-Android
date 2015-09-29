@@ -51,6 +51,16 @@
             android:name=".PsdResetActivity"
             android:label="@string/title_activity_psd_reset" >
         </activity>
+
+        <receiver
+            android:name="ScreenLockDeviceAdminReceiver"
+            android:label="Screen Lock"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+     
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

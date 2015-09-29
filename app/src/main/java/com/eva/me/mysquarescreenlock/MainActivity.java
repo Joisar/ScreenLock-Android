@@ -3,9 +3,12 @@ package com.eva.me.mysquarescreenlock;
 import com.eva.me.mysquarescreenlock.unlock.util.PasswordUtil;
 
 import android.app.Activity;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+
+    DevicePolicyManager deviceMgr;
+    ComponentName comp;
+
+
 	private static final String TAG = "MainActivity";
 	
 	private Button btnStaSer;
@@ -29,12 +37,32 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		init();
+
+        if (BuildConfig.DEBUG) {
+            Log.d("ScreenLock", "MainActivity oncreate.");
+        }
+        deviceMgr = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        comp = new ComponentName(this, ScreenLockDeviceAdminReceiver.class);
+
+
+        if (!deviceMgr.isAdminActive(comp)) {
+            Log.d("ScreenLock", "Main :admin is false");
+            Intent intent = new Intent(
+                    DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, comp);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                    "devicePolicyManagerMessage");
+
+            startActivityForResult(intent, 0);
+        }
+
+
+        init();
 	}
 
 	private void init() {
 		context = MainActivity.this;
-		
+
 		btnStaSer = (Button) findViewById(R.id.button1);
 		btnStaSer.setOnClickListener(new OnClickListener() {
 			
@@ -63,8 +91,11 @@ public class MainActivity extends Activity {
 		btnAbout.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
+            public void onClick(View v) {
+
 				showToast("Here is Software", context);
+                deviceMgr.lockNow();
+
 			}
 		});
 		
@@ -78,6 +109,7 @@ public class MainActivity extends Activity {
 				PasswordUtil.curPsd="";//还是处理一下
 			}
 		});
+
 		
 	}
 
